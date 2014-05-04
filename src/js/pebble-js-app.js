@@ -24,7 +24,7 @@ function sendAppMessage(message, numTries, transactionId) {
 
 function makeRequest() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://209.141.62.74/dogeapi/api.php', true);
+	xhr.open('GET', 'http://dogechain.info/chain/Dogecoin/q/getblockcount', true);
 	xhr.timeout = timeoutForAPIRequest;
 	xhr.onload = function(e) {
 		if (xhr.readyState == 4) {
