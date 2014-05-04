@@ -66,7 +66,10 @@ void update() {
 void tick_handler(struct tm *tick_time, TimeUnits units_changed)
 {
         //Format the buffer string using tick_time as the time source
-        strftime(buffer, sizeof("00:00"), "%H:%M", tick_time);
+        
+        //I am going to add an if statement to see what the customer has their time settings set to
+        //and then make it 12 or 24 hour time. 
+        strftime(buffer, sizeof("00:00"), "%l:%M", tick_time);
         
         //Change the TextLayer text to show the new time!
         text_layer_set_text(time_layer, buffer);
