@@ -9,7 +9,7 @@ TextLayer *diff_layer;
 TextLayer *block_layer;
 TextLayer *doge_price_layer;
 TextLayer *usdk_price_layer;
-
+AppTimer *updateTimer;
 static GBitmap *background_img;
 static BitmapLayer* bg_layer;
 
@@ -188,7 +188,8 @@ void init()
         tick_timer_service_subscribe(MINUTE_UNIT, (TickHandler) tick_handler);
 
 		window_stack_push(window, true);
-  AppTimer *updateTimer=app_timer_register(300000,(AppTimerCallback) update, NULL);
+  update();
+  updateTimer=app_timer_register(300000,(AppTimerCallback) update, NULL);
 }
 
 void deinit()
