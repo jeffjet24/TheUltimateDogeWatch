@@ -1,4 +1,4 @@
-// Works covered by CC BY-NC-SA 4.0
+//Works covered by CC BY-NC-SA 4.0
 
 var maxTriesForSendingAppMessage = 3;
 var timeoutForAppMessageRetry = 3000;
@@ -23,20 +23,67 @@ function sendAppMessage(message, numTries, transactionId) {
 }
 
 function makeRequest() {
+	var pricePerK;
+	var pricePerBTC;
+	var hashrate;
+	var block;
+	var difficulty;
+
+
+
+	//Creating and Opening the needed XMLHttpRequest Objects
+	//var xhrHash= new XMLHttpRequest();
+	var xhrDiff= new XMLHttpRequest();
+	xhrDiff.open('GET','http://dogechain.info/chain/Dogecoin/q/getdifficulty?cache='+(Math.random()*1000000),true);
+	var xhrBlock= new XMLHttpRequest();
+	xhrBlock.open('GET','http://dogechain.info/chain/Dogecoin/q/getblockcount?cache='+(Math.random()*1000000),true);
+	var xhrBTC= new XMLHttpRequest();
+	xhrBTC.open('GET','https://api.prelude.io/last/DOGE',true);
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://dogechain.info/chain/Dogecoin/q/getblockcount', true);
+	xhr.open('GET', 'https://api.prelude.io/last-usd/DOGE', true);
+
+
+	//timeouts?
 	xhr.timeout = timeoutForAPIRequest;
+	xhrBTC.timeout = timeoutForAPIRequest;
+
 	xhr.onload = function(e) {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
+
+
+				block=xhrBlock.responseText+'';
+				//blockNum=(parseFloat(xhrBlock.responseText)-2)+'';
+
+
+				//xhrHash.open('GET','http://dogechain.info/chain/Dogecoin/q/nethash/1/'+blockNum+'?format=json',true);
+
+
+
+
+				//Parsing the JSON Sources
 				res = JSON.parse(xhr.responseText);
+				resBTC = JSON.parse(xhrBTC.responseText);
+
+
+				//doing the required Math and stuff
+				pricePerK=(parseFloat(res.last)*1000)+'';
+				pricePerBTC=(parseFloat(resBTC.last)*100000000)+'';
+				difficulty=xhrDiff.responseText+'';
+
+				//resHash = JSON.parse(xhrHash.responseText);
+				//hashrate=(parseFloat(resHash[8])/1000000000)+" GH/s";
+				//Updating the Pebble
+        
+        console.log("I am running now!");
 				sendAppMessage({
-						'price_doge': res.price.dogebtc,
-						'price_usdk': res.price.dogeusdk,
-						'net_block': res.network.block,
-						'net_hash': res.network.hashrate,
-						'net_diff': res.network.difficulty
-					});
+					'price_usdk': pricePerK,
+					'price_doge': pricePerBTC,
+					'net_block': block,
+				//	'net_hash': hashrate,
+					'net_diff': difficulty
+				});
+
 			} else {
 				console.log('Request returned error code ' + xhr.status.toString());
 				sendAppMessage({'item_name': 'Error: ' + xhr.statusText});
@@ -51,7 +98,12 @@ function makeRequest() {
 		console.log(JSON.stringify(e));
 		sendAppMessage({'item_name': 'Error: Failed to connect!'});
 	};
-	xhr.send(null);
+xhr.send(null);
+xhrBTC.send(null);
+xhrBlock.send(null);
+xhrDiff.send(null);
+//xhrHash.send(null);
+
 }
 
 Pebble.addEventListener('ready', function(e) {});
