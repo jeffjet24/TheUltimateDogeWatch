@@ -73,7 +73,7 @@ void tick_handler(struct tm *tick_time, TimeUnits units_changed)
         text_layer_set_text(time_layer, buffer);
 
 		// 1.5 second sleep to wait for JS to be ready.
-		psleep(1500);
+		
 
 		// The 'psleep' is a shortcut. This really should be rewritten
 		// to have the watch wait on startup until the JS returns a
@@ -148,10 +148,11 @@ void window_load(Window *window)
         time_t temp;
         temp = time(NULL);
         t = localtime(&temp);
-
+        
         //Manually call the tick handler when the window is loading
+        
         tick_handler(t, MINUTE_UNIT);
-
+        
 }
 
 void window_unload(Window *window)
@@ -177,7 +178,7 @@ static void app_message_init(void) {
 void init()
 {
         app_message_init();
-
+    update();
 		//Initialize the app elements here!
         window = window_create();
         window_set_window_handlers(window, (WindowHandlers) {
@@ -188,7 +189,9 @@ void init()
         tick_timer_service_subscribe(MINUTE_UNIT, (TickHandler) tick_handler);
 
 		window_stack_push(window, true);
+  
   update();
+  //psleep(2000);
   updateTimer=app_timer_register(300000,(AppTimerCallback) update, NULL);
 }
 

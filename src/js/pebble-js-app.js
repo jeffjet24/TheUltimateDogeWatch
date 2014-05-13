@@ -32,13 +32,13 @@ function makeRequest() {
 
 
 	//Creating and Opening the needed XMLHttpRequest Objects
-	//var xhrHash= new XMLHttpRequest();
+	var xhrHash= new XMLHttpRequest();
 	var xhrDiff= new XMLHttpRequest();
 	xhrDiff.open('GET','http://dogechain.info/chain/Dogecoin/q/getdifficulty?cache='+(Math.random()*1000000),true);
 	var xhrBlock= new XMLHttpRequest();
 	xhrBlock.open('GET','http://dogechain.info/chain/Dogecoin/q/getblockcount?cache='+(Math.random()*1000000),true);
 	var xhrBTC= new XMLHttpRequest();
-	xhrBTC.open('GET','https://api.prelude.io/last/DOGE',true);
+	xhrBTC.open('GET','https://api.prelude.io/last/DOGE',false);
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'https://api.prelude.io/last-usd/DOGE', true);
 
@@ -53,34 +53,46 @@ function makeRequest() {
 
 
 				block=xhrBlock.responseText+'';
-				//blockNum=(parseFloat(xhrBlock.responseText)-2)+'';
 
 
-				//xhrHash.open('GET','http://dogechain.info/chain/Dogecoin/q/nethash/1/'+blockNum+'?format=json',true);
-
-
-
+				xhrHash.open('GET','http://dogechain.info/chain/Dogecoin/q/nethash/1/210000',true);
+        hashrate=xhrHash.responseText+'';
+        console.log(hashrate);
+        var strLength=hashrate.length;
+        console.log(strLength);
+        hashrate=hashrate.substr(strLength-11,strLength);
+        hashrate=parseInt(hashrate);
 
 				//Parsing the JSON Sources
-				res = JSON.parse(xhr.responseText);
-				resBTC = JSON.parse(xhrBTC.responseText);
+				var res = JSON.parse(xhr.responseText);
+				var resBTC = JSON.parse(xhrBTC.responseText);
 
 
 				//doing the required Math and stuff
-				pricePerK=(parseFloat(res.last)*1000)+'';
-				pricePerBTC=(parseFloat(resBTC.last)*100000000)+'';
-				difficulty=xhrDiff.responseText+'';
-
-				//resHash = JSON.parse(xhrHash.responseText);
-				//hashrate=(parseFloat(resHash[8])/1000000000)+" GH/s";
-				//Updating the Pebble
+				pricePerK=(parseFloat(res.last)*1000);
+				pricePerBTC=(parseFloat(resBTC.last)*100000000);
+        console.log(hashrate);
+				difficulty=xhrDiff.responseText;
+        
+				hashrate=(parseFloat(hashrate)/1000000000)+" GH/s";
+				
+        
+        //Doing some Formatting so everything fits in its space.
+        pricePerK=pricePerK.toFixed(2);
+        pricePerBTC=pricePerBTC.toFixed(0);
+        //difficulty=difficulty.toFixed(0);
+        
+        
+        
+        //Updating the Pebble
         
         console.log("I am running now!");
+        console.log(hashrate);
 				sendAppMessage({
 					'price_usdk': pricePerK,
 					'price_doge': pricePerBTC,
 					'net_block': block,
-				//	'net_hash': hashrate,
+					'net_hash': hashrate,
 					'net_diff': difficulty
 				});
 
@@ -89,7 +101,7 @@ function makeRequest() {
 				sendAppMessage({'item_name': 'Error: ' + xhr.statusText});
 			}
 		}
-	}
+  }
 	xhr.ontimeout = function() {
 		console.log('Error: request timed out!');
 		sendAppMessage({'item_name': 'Error: Request timed out!'});
