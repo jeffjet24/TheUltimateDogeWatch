@@ -1,6 +1,18 @@
 DogeMiner
 ========
 
+This Watchface is in the process of being transformed and updated to rely on much larger servers and more stable APIs to pull the value and network statistics of the Dogecoin network. 
+
+
+
+Any
+
+
+
+
+
+Previous Description
+=======================================================
 Pebble Watch Face for Pebble SDK2
 
 A re-written version of github.com/johanso-au/DogeMiner, this face now works natively on Pebble V2 without the need for 3rd party applications (HTTPebble)
@@ -8,10 +20,6 @@ A re-written version of github.com/johanso-au/DogeMiner, this face now works nat
 The watchface displays the current network statistics (Current Block, Difficulty, and Global Hashrate), along with the current DOGE/BTC price (via Cryptsy) and a DOGE > USD conversion (displayed as $X.XXX / 1000 DOGE). These details update each minute.
 
 Download link TBA.
-
-The API address referenced in the Javascript is my own VPS with the current information served from a MySQL database. Should any of the 3rd price API's go down, the information will continue to be updated with the last known information. Any donations to assist with the API hosting costs is greatly appreciated (DUNqYPputM8ZLHTHM6RCpNcVs326wWWTkM)
-
-Any questions or comments welcomed.
 
 
 How to install:
