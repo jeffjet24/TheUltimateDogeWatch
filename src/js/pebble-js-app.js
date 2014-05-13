@@ -75,13 +75,12 @@ function makeRequest() {
 				difficulty=xhrDiff.responseText;
         
 				hashrate=(parseFloat(hashrate)/1000000000)+" GH/s";
-				
+				difficulty=parseFloat(difficulty);
         
         //Doing some Formatting so everything fits in its space.
         pricePerK=pricePerK.toFixed(2);
         pricePerBTC=pricePerBTC.toFixed(0);
-        //difficulty=difficulty.toFixed(0);
-        
+        difficulty=difficulty.toFixed(1);
         
         
         //Updating the Pebble

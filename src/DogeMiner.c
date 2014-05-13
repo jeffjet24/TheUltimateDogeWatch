@@ -93,46 +93,46 @@ void window_load(Window *window)
     layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(bg_layer));
 
 		//Time layer
-    time_layer = text_layer_create(GRect(0, 0, 144, 62));
+    time_layer = text_layer_create(GRect(0, 20, 144, 62));
     text_layer_set_background_color(time_layer, GColorClear);
     text_layer_set_text_color(time_layer, GColorWhite);
     text_layer_set_text_alignment(time_layer, GTextAlignmentCenter);
-    text_layer_set_font(time_layer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
+    text_layer_set_font(time_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_COMIC_SANS_25)));
     layer_add_child(window_get_root_layer(window), (Layer*) time_layer);
 
 		// hash_layer
 		hash_layer = text_layer_create(GRect(75, 106, 67, 24));
 		text_layer_set_text_color(hash_layer, GColorWhite);
 		text_layer_set_background_color(hash_layer, GColorClear);
-		text_layer_set_font(hash_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+		text_layer_set_font(hash_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_COMIC_SANS_20)));
 		text_layer_set_text_alignment(hash_layer, GTextAlignmentRight);
 
 	    // diff_layer
 		diff_layer = text_layer_create(GRect(71, 88, 71, 24));
 		text_layer_set_text_color(diff_layer, GColorWhite);
 		text_layer_set_background_color(diff_layer, GColorClear);
-		text_layer_set_font(diff_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+		text_layer_set_font(diff_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_COMIC_SANS_20)));
 		text_layer_set_text_alignment(diff_layer, GTextAlignmentRight);
 
 		// block_layer
 		block_layer = text_layer_create(GRect(65, 70, 77, 24));
 		text_layer_set_text_color(block_layer, GColorWhite);
 		text_layer_set_background_color(block_layer, GColorClear);
-		text_layer_set_font(block_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+		text_layer_set_font(block_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_COMIC_SANS_20)));
 		text_layer_set_text_alignment(block_layer, GTextAlignmentRight);
 
 		// doge_price_layer
-		doge_price_layer = text_layer_create(GRect(19, 134, 51, 24));
+		doge_price_layer = text_layer_create(GRect(19, 138, 51, 24));
 		text_layer_set_text_color(doge_price_layer, GColorWhite);
 		text_layer_set_background_color(doge_price_layer, GColorClear);
-		text_layer_set_font(doge_price_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+		text_layer_set_font(doge_price_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_COMIC_SANS_20)));
 		text_layer_set_text_alignment(doge_price_layer, GTextAlignmentCenter);
 
 		// usdk_price_layer
-		usdk_price_layer = text_layer_create(GRect(85, 129, 57, 24));
+		usdk_price_layer = text_layer_create(GRect(85, 133, 57, 24));
 		text_layer_set_text_color(usdk_price_layer, GColorBlack);
 		text_layer_set_background_color(usdk_price_layer, GColorClear);
-		text_layer_set_font(usdk_price_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+		text_layer_set_font(usdk_price_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_COMIC_SANS_20)));
 		text_layer_set_text_alignment(usdk_price_layer, GTextAlignmentCenter);
 
     layer_add_child(window_get_root_layer(window), (Layer*) time_layer);

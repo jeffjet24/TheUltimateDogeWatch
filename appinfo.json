@@ -21,6 +21,16 @@
     "resources": {
         "media": [
             {
+                "type": "font",
+                "name": "FONT_COMIC_SANS_20",
+                "file": "fonts/2086.ttf"
+            },
+            {
+                "type": "font",
+                "name": "FONT_COMIC_SANS_25",
+                "file": "fonts/2086.ttf"
+            },
+            {
                 "type": "png",
                 "name": "IMAGE_BG",
                 "file": "images/background.png"
