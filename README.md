@@ -5,7 +5,7 @@ This Watchface is in the process of being transformed and updated to rely on muc
 
 
 
-Any
+Any donations to help this watchface grow would be greatly appreciated (DNf3vALx3sufWiYoqePgcjL9XBqvJXwuAq), as I am quite a poor college shibe. 
 
 
 
