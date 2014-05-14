@@ -9,6 +9,10 @@ TextLayer *diff_layer;
 TextLayer *block_layer;
 TextLayer *doge_price_layer;
 TextLayer *usdk_price_layer;
+TextLayer *block_label_layer;
+TextLayer *diff_label_layer;
+TextLayer *hash_label_layer;
+
 AppTimer *updateTimer;
 static GBitmap *background_img;
 static BitmapLayer* bg_layer;
@@ -143,6 +147,40 @@ void window_load(Window *window)
 		layer_add_child(window_get_root_layer(window), (Layer*) usdk_price_layer);
 
 
+    //layer for the block# label
+    block_label_layer = text_layer_create(GRect(0, 70, 77, 24));
+    text_layer_set_background_color(block_label_layer, GColorClear);
+    text_layer_set_text_color(block_label_layer, GColorWhite);
+    text_layer_set_text_alignment(block_label_layer, GTextAlignmentLeft);
+    text_layer_set_font(block_label_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_COMIC_SANS_20)));
+    layer_add_child(window_get_root_layer(window), (Layer*) block_label_layer);
+
+  
+  
+    diff_label_layer = text_layer_create(GRect(0, 88, 71, 24));
+    text_layer_set_background_color(diff_label_layer, GColorClear);
+    text_layer_set_text_color(diff_label_layer, GColorWhite);
+    text_layer_set_text_alignment(diff_label_layer, GTextAlignmentLeft);
+    text_layer_set_font(diff_label_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_COMIC_SANS_20)));
+    layer_add_child(window_get_root_layer(window), (Layer*) diff_label_layer);
+  
+  
+    
+    hash_label_layer = text_layer_create(GRect(0, 106, 67, 24));
+    text_layer_set_background_color(hash_label_layer, GColorClear);
+    text_layer_set_text_color(hash_label_layer, GColorWhite);
+    text_layer_set_text_alignment(hash_label_layer, GTextAlignmentLeft);
+    text_layer_set_font(hash_label_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_COMIC_SANS_20)));
+    layer_add_child(window_get_root_layer(window), (Layer*) hash_label_layer);
+  
+  
+    text_layer_set_text(block_label_layer, "Block:");
+    text_layer_set_text(diff_label_layer,"Diff:");
+    text_layer_set_text(hash_label_layer,"Hash:");
+
+
+  
+  
 	//Get a time structure so that the face doesn't start blank
         struct tm *t;
         time_t temp;
