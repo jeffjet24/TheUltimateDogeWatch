@@ -52,10 +52,13 @@ function makeRequest() {
 			if (xhr.status == 200) {
 
 
-				block=xhrBlock.responseText+'';
-
-
-				xhrHash.open('GET','http://dogechain.info/chain/Dogecoin/q/nethash/1/210000',true);
+				block=xhrBlock.responseText;
+  
+        console.log(block);
+        var hashURL="http://dogechain.info/chain/Dogecoin/q/nethash/1/"+parseInt(block-3)+"?format=json";
+        block=block+'';
+        console.log(hashURL);
+				xhrHash.open('GET',hashURL,false);
         hashrate=xhrHash.responseText+'';
         console.log(hashrate);
         var strLength=hashrate.length;
