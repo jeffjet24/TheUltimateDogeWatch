@@ -1,40 +1,40 @@
 {
-    "appKeys": {
-        "net_hash": 0,
-        "net_diff": 1,
-        "price_usdk": 4,
-        "net_block": 2,
-        "price_doge": 3
-    },
-    "versionLabel": "2.1",
-    "versionCode": 2,
-    "shortName": "DogeMiner",
-    "companyName": "johanso",
-    "watchapp": {
-        "watchface": true
-    },
-    "longName": "DogeMiner Network Monitor",
-    "resources": {
-        "media": [
-            {
-                "file": "fonts/2086.ttf",
-                "type": "font",
-                "name": "FONT_COMIC_SANS_20"
-            },
-            {
-                "file": "fonts/2086.ttf",
-                "type": "font",
-                "name": "FONT_COMIC_SANS_25"
-            },
-            {
-                "file": "images/background.png",
-                "type": "png",
-                "name": "IMAGE_BG"
-            }
-        ]
-    },
     "uuid": "66279e6b-6b37-4181-a328-5966124da43a",
     "capabilities": [
         ""
-    ]
+    ],
+    "appKeys": {
+        "net_hash": 0,
+        "price_usdk": 4,
+        "net_block": 2,
+        "net_diff": 1,
+        "price_doge": 3
+    },
+    "resources": {
+        "media": [
+            {
+                "name": "FONT_COMIC_SANS_20",
+                "type": "font",
+                "file": "fonts/2086.ttf"
+            },
+            {
+                "name": "FONT_COMIC_SANS_25",
+                "type": "font",
+                "file": "fonts/2086.ttf"
+            },
+            {
+                "name": "IMAGE_BG",
+                "type": "png",
+                "file": "images/background.png"
+            }
+        ]
+    },
+    "versionCode": 2,
+    "shortName": "DogeMiner",
+    "longName": "DogeMiner Network Monitor",
+    "watchapp": {
+        "watchface": true
+    },
+    "companyName": "johanso",
+    "versionLabel": "2.1"
 }

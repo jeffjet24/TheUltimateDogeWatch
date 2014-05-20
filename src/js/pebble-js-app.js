@@ -53,18 +53,11 @@ function makeRequest() {
 
 
 				block=xhrBlock.responseText;
-  
-        console.log(block);
-        var hashURL="http://dogechain.info/chain/Dogecoin/q/nethash/1/"+parseInt(block-3)+"?format=json";
         block=block+'';
-        console.log(hashURL);
-				xhrHash.open('GET',hashURL,false);
-        hashrate=xhrHash.responseText+'';
-        console.log(hashrate);
-        var strLength=hashrate.length;
-        console.log(strLength);
-        hashrate=hashrate.substr(strLength-11,strLength);
-        hashrate=parseInt(hashrate);
+				xhrHash.open('GET','http://narwhy.pw/shibe/nethash/?cache='+(Math.random()*1000000),true);
+        hashrate=xhrHash.responseText;
+        console.log(+'');
+        
 
 				//Parsing the JSON Sources
 				var res = JSON.parse(xhr.responseText);
@@ -74,7 +67,6 @@ function makeRequest() {
 				//doing the required Math and stuff
 				pricePerK=(parseFloat(res.last)*1000);
 				pricePerBTC=(parseFloat(resBTC.last)*100000000);
-        console.log(hashrate);
 				difficulty=xhrDiff.responseText;
         
 				hashrate=(parseFloat(hashrate)/1000000000)+" GH/s";
