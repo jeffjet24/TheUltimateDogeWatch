@@ -33,6 +33,7 @@ function makeRequest() {
 
 	//Creating and Opening the needed XMLHttpRequest Objects
 	var xhrHash= new XMLHttpRequest();
+  xhrHash.open('GET','http://narwhy.pw/shibe/nethash/',true);
 	var xhrDiff= new XMLHttpRequest();
 	xhrDiff.open('GET','http://dogechain.info/chain/Dogecoin/q/getdifficulty?cache='+(Math.random()*1000000),true);
 	var xhrBlock= new XMLHttpRequest();
@@ -54,9 +55,9 @@ function makeRequest() {
 
 				block=xhrBlock.responseText;
         block=block+'';
-				xhrHash.open('GET','http://narwhy.pw/shibe/nethash/?cache='+(Math.random()*1000000),true);
+				
         hashrate=xhrHash.responseText;
-        console.log(+'');
+        console.log(hashrate+'');
         
 
 				//Parsing the JSON Sources
@@ -69,15 +70,15 @@ function makeRequest() {
 				pricePerBTC=(parseFloat(resBTC.last)*100000000);
 				difficulty=xhrDiff.responseText;
         
-				hashrate=(parseFloat(hashrate)/1000000000)+" GH/s";
+				hashrate=(parseFloat(hashrate)/1000000000);
 				difficulty=parseFloat(difficulty);
         
         //Doing some Formatting so everything fits in its space.
         pricePerK=pricePerK.toFixed(2);
         pricePerBTC=pricePerBTC.toFixed(0);
         difficulty=difficulty.toFixed(1);
-        
-        
+        hashrate=hashrate.toFixed(0);
+        hashrate=hashrate+"GH/s";
         //Updating the Pebble
         
         console.log("I am running now!");
@@ -108,7 +109,7 @@ xhr.send(null);
 xhrBTC.send(null);
 xhrBlock.send(null);
 xhrDiff.send(null);
-//xhrHash.send(null);
+xhrHash.send(null);
 
 }
 
