@@ -43,8 +43,8 @@ static void in_received_handler(DictionaryIterator *iter, void *context) {
 	Tuple *price_usdk_tuple = dict_find(iter, PRICE_USDK_KEY);
 
 	if (net_hash_tuple) {
-		text_layer_set_text(hash_layer, net_hash_tuple->value->cstring);
-	}
+    text_layer_set_text(hash_layer, net_hash_tuple->value->cstring);
+  }
 	if (net_diff_tuple) {
 		text_layer_set_text(diff_layer, net_diff_tuple->value->cstring);
 	}
@@ -70,20 +70,13 @@ void update() {
 
 void tick_handler(struct tm *tick_time, TimeUnits units_changed)
 {
-        //Format the buffer string using tick_time as the time source
-        strftime(buffer, sizeof("00:00"), "%l:%M", tick_time);
-
-        //Change the TextLayer text to show the new time!
-        text_layer_set_text(time_layer, buffer);
-
-		// 1.5 second sleep to wait for JS to be ready.
-		
-
-		// The 'psleep' is a shortcut. This really should be rewritten
-		// to have the watch wait on startup until the JS returns a
-		// 'ready' event, then update.
-   
-    //update();
+  if (clock_is_24h_style()) {
+    strftime(buffer, sizeof("00:00"), "%k:%M", tick_time);
+  } else {
+    strftime(buffer, sizeof("00:00"), "%l:%M", tick_time);
+  }
+  
+      text_layer_set_text(time_layer, buffer);
 }
 
 
@@ -173,7 +166,7 @@ void window_load(Window *window)
     text_layer_set_font(hash_label_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_COMIC_SANS_20)));
     layer_add_child(window_get_root_layer(window), (Layer*) hash_label_layer);
   
-  
+    //setting the labels for the numbers. 
     text_layer_set_text(block_label_layer, "Block:");
     text_layer_set_text(diff_label_layer,"Diff:");
     text_layer_set_text(hash_label_layer,"Hash:");
@@ -228,6 +221,7 @@ void init()
 
 		window_stack_push(window, true);
   
+  //update the data
   update();
   //psleep(2000);
   updateTimer=app_timer_register(300000,(AppTimerCallback) update, NULL);
