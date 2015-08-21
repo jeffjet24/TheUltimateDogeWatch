@@ -17,12 +17,8 @@ This watchface is becoming a modified version of github.com/johanso-au/DogeMiner
 Any donations to help this watchface grow would be greatly appreciated (DNf3vALx3sufWiYoqePgcjL9XBqvJXwuAq), as I am quite a poor college shibe. 
 
 
-
-How to install:
-=======
-
-At the time of writing (Jan 2014), the Pebble SDK2 was only available to developers and is not yet on Google Play or the Apple Store. Should you wish to use this watchface now, you will need to aquire the Pebble V2 app for your device from Pebble.
-
-Installation is simple enough. Download the face from the link below (or from the Pebble App Store once available) from your phone with the Pebble App installed. This will automatically install the watchface and display it.
+Recent Updates
+========
+I have not worked on this project for a very long time. Since then, Prelude.io is no longer in business, and I bet DogeChain.info has changed their API. I am no longer working on the watchface. I will release a tag with a binary for the current state of the watchface. (this paragrah added 8/21/15)
 
 This work is covered by the CC BY-NC-SA 4.0 license (http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US).
